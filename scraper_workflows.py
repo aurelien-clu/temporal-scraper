@@ -27,16 +27,17 @@ class CrawlWebsite:
         workflow.logger.info(
             f"...parsed, {parsed.title=}, found {len(parsed.links)} links"
         )
-
-        to_save = SavePage(path=cmd.output_path, page=parsed)
+        path = cmd.output_dir + cmd.sep + f"{cmd.id}.json"
+        to_save = SavePage(path=path, page=parsed)
         await workflow.execute_activity(
             save_page,
             to_save,
             schedule_to_close_timeout=timedelta(seconds=5),
         )
+
         return OutputStats(
             url=cmd.url,
             title=parsed.title,
             nb_links=len(parsed.links),
-            path=cmd.output_path,
+            path=to_save.path,
         )

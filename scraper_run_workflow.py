@@ -17,13 +17,19 @@ async def async_crawl(
     task_queue: str,
 ):
     id_ = uuid.uuid4().hex
-    output_path = os.path.join(output_dir, id_) + ".json"
-    crawl_cmd = CrawlUrl(url=url, output_path=output_path)
+
+    crawl_cmd = CrawlUrl(
+        id=id_,
+        url=url,
+        sep=os.sep,
+        output_dir=output_dir,
+    )
 
     # Create client connected to server at the given address
     client = await Client.connect(temporal_server)
 
     # Execute a workflow
+    logger.info(f"starting: {crawl_cmd}...")
     result = await client.execute_workflow(
         CrawlWebsite.run,
         crawl_cmd,
@@ -31,7 +37,7 @@ async def async_crawl(
         task_queue=task_queue,
     )
 
-    logger.info(f"Result: {result}")
+    logger.success(f"{result}")
 
 
 def crawl(

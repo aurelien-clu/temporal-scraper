@@ -4,8 +4,10 @@ from dataclasses import dataclass
 
 @dataclass
 class CrawlUrl:
+    id: str
     url: str
-    output_path: str
+    sep: str
+    output_dir: str
 
 
 @dataclass
