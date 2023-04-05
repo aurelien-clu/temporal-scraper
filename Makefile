@@ -18,9 +18,9 @@ scraper_run_worker:
 	python scraper_run_worker.py
 
 scraper_run_workflow:
-	python scraper_run_workflow.py
+	python scraper_run_workflow.py --url=https://news.yahoo.com/
 
-lint:
+fmt:
 	poetry run python -m black .
 	poetry run python -m isort --profile black .
 

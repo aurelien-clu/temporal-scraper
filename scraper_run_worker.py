@@ -14,9 +14,9 @@ async def main():
 
     # Run the worker
     worker = Worker(
-        client, 
-        task_queue="scraper", 
-        workflows=[CrawlWebsite], 
+        client,
+        task_queue="scraper",
+        workflows=[CrawlWebsite],
         activities=[
             fetch_page,
             parse_page,
