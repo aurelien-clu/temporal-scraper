@@ -5,7 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class CrawlUrl:
     url: str
-    output_dir: str
+    output_path: str
 
 
 @dataclass
@@ -23,7 +23,7 @@ class ParsedPage:
 
 @dataclass
 class SavePage:
-    output_dir: str
+    path: str
     page: ParsedPage
 
 
@@ -32,3 +32,4 @@ class OutputStats:
     url: str
     title: str
     nb_links: int
+    path: str

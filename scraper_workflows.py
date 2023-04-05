@@ -5,7 +5,7 @@ from temporalio import workflow
 # Import our activity, passing it through the sandbox
 with workflow.unsafe.imports_passed_through():
     from scraper_activities import fetch_page, parse_page, save_page
-    from scraper_model import CrawlUrl, FetchedPage, ParsedPage, SavePage, OutputStats
+    from scraper_model import CrawlUrl, FetchedPage, OutputStats, ParsedPage, SavePage
 
 
 @workflow.defn
@@ -18,21 +18,25 @@ class CrawlWebsite:
             cmd.url,
             schedule_to_close_timeout=timedelta(seconds=5),
         )
-        workflow.logger.info(f"...{cmd.url} fetched")
 
         parsed: ParsedPage = await workflow.execute_activity(
             parse_page,
             page,
             schedule_to_close_timeout=timedelta(seconds=5),
         )
-        workflow.logger.info(f"{cmd.url} parsed, {parsed.title=}, found {len(parsed.links)} links")
+        workflow.logger.info(
+            f"...parsed, {parsed.title=}, found {len(parsed.links)} links"
+        )
 
-        workflow.logger.info(f"saving {cmd.url} results to {cmd.output_dir}...")
+        to_save = SavePage(path=cmd.output_path, page=parsed)
         await workflow.execute_activity(
             save_page,
-            SavePage(output_dir=cmd.output_dir, page=parsed),
+            to_save,
             schedule_to_close_timeout=timedelta(seconds=5),
         )
-        workflow.logger.info("...result saved")
-
-        return OutputStats(url=cmd.url, title=parsed.title, nb_links=len(parsed.links))
+        return OutputStats(
+            url=cmd.url,
+            title=parsed.title,
+            nb_links=len(parsed.links),
+            path=cmd.output_path,
+        )
