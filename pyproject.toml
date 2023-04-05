@@ -10,6 +10,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 loguru = "^0"
+temporalio = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "*"       # security practices                    https://github.com/PyCQA/bandit
