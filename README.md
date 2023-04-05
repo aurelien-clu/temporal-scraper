@@ -50,7 +50,8 @@ python scraper_run_worker.py
 # you could start more workers with more terminals to parallelize more workflows & activities
 
 # terminal 3
-python scraper_run_workflow.py --url=https://news.yahoo.com/
+mkdir -p data
+python scraper_run_workflow.py --url=https://news.yahoo.com --output-dir=data
 ```
 
 Go to [127.0.0.1:8233/namespaces/default/workflows](http://127.0.0.1:8233/namespaces/default/workflows) to see the temporal web UI.
