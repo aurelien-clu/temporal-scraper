@@ -12,6 +12,22 @@
 
 ### Setup
 
+#### Temporal.io
+
+Go to [docs.temporal.io/run-a-dev-cluster](https://docs.temporal.io/application-development/foundations#run-a-dev-cluster) and install the development temporal CLI.
+
+Or try:
+
+```bash
+# mac or brew on linux
+brew install temporal
+
+# or execute bravely an unknown script from an unknown README ;)
+curl -sSf https://temporal.download/cli.sh | sh
+```
+
+#### Python
+
 ```shell
 # skip if python 3.9 is already installed with or without pyenv
 pyenv install 3.9.10
@@ -23,15 +39,16 @@ poetry env use ~/.pyenv/versions/3.9.10/bin/python3.9
 poetry install
 ```
 
-### Development
+### Run
 
 ```shell
-# format automatically code
-make lint
+# terminal 1
+temporal server start-dev
 
-# run tests
-make test
+# terminal 2
+python scraper_run_worker.py
+# you could start more workers with more terminals to parallelize more workflows & activities
 
-# run
-make run_dev
+# terminal 3
+python scraper_run_workflow.py --url=https://news.yahoo.com/
 ```

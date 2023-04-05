@@ -18,7 +18,7 @@ scraper_run_worker:
 	python scraper_run_worker.py
 
 scraper_run_workflow:
-	python scraper_run_workflow.py --url=https://news.yahoo.com/
+	python scraper_run_workflow.py --url=https://news.yahoo.com/ --output-dir=data
 
 fmt:
 	poetry run python -m black .
