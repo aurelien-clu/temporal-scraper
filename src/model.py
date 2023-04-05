@@ -30,7 +30,7 @@ class SavePage:
 
 
 @dataclass
-class OutputStats:
+class Output:
     url: str
     title: str
     nb_links: int

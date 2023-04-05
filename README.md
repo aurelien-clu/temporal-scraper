@@ -9,26 +9,11 @@
 
 - Install `python 3.9` or [pyenv](https://github.com/pyenv/pyenv-installer)
 - Install [poetry](https://python-poetry.org/docs/)
+- Install [docs.temporal.io/run-a-dev-cluster](https://docs.temporal.io/application-development/foundations#run-a-dev-cluster) and install the development temporal CLI
 
 ### Setup
 
-#### Temporal.io
-
-Go to [docs.temporal.io/run-a-dev-cluster](https://docs.temporal.io/application-development/foundations#run-a-dev-cluster) and install the development temporal CLI.
-
-Or try:
-
 ```bash
-# mac or brew on linux
-brew install temporal
-
-# or execute bravely an unknown script from an unknown README ;)
-curl -sSf https://temporal.download/cli.sh | sh
-```
-
-#### Python
-
-```shell
 # skip if python 3.9 is already installed with or without pyenv
 pyenv install 3.9.10
 
@@ -41,17 +26,23 @@ poetry install
 
 ### Run
 
-```shell
+```bash
 # terminal 1
 temporal server start-dev
 
 # terminal 2
-python scraper_run_worker.py
-# you could start more workers with more terminals to parallelize more workflows & activities
+python src/run_worker.py
+# you could start more workers with more terminals, here it won't be necessary
 
 # terminal 3
 mkdir -p data
-python scraper_run_workflow.py --url=https://news.yahoo.com --output-dir=data
+python src/run_workflow.py --url=https://news.yahoo.com --output-dir=data
+```
+
+```bash
+# terminal 3 output
+INFO    | starting: CrawlUrl(id='384db', url='https://news.yahoo.com')
+SUCCESS | Output(url='https://news.yahoo.com', title='Yahoo News [...]', nb_links=88, path='data/384db.json')
 ```
 
 Go to [127.0.0.1:8233/namespaces/default/workflows](http://127.0.0.1:8233/namespaces/default/workflows) to see the temporal web UI.
