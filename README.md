@@ -52,3 +52,5 @@ python scraper_run_worker.py
 # terminal 3
 python scraper_run_workflow.py --url=https://news.yahoo.com/
 ```
+
+Go to [127.0.0.1:8233/namespaces/default/workflows](http://127.0.0.1:8233/namespaces/default/workflows) to see the temporal web UI.

@@ -25,3 +25,10 @@ class ParsedPage:
 class SavePage:
     output_dir: str
     page: ParsedPage
+
+
+@dataclass
+class OutputStats:
+    url: str
+    title: str
+    nb_links: int
