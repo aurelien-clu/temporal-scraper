@@ -8,11 +8,11 @@ help:
 # DEV    #
 ##########
 
-scraper_run_worker:
-	cd src && python run_worker.py
+worker:
+	python src/run_worker.py
 
-scraper_run_workflow:
-	cd src && python run_workflow.py --url=https://news.yahoo.com/ --output-dir=../data
+workflow:
+	python src/run_workflow.py --url=https://news.yahoo.com/ --output-dir=data
 
 fmt:
 	poetry run python -m black src
