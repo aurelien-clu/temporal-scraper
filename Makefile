@@ -8,12 +8,6 @@ help:
 # DEV    #
 ##########
 
-example_run_worker:
-	python example_run_worker.py
-
-example_run_workflow:
-	python example_run_workflow.py
-
 scraper_run_worker:
 	python scraper_run_worker.py
 

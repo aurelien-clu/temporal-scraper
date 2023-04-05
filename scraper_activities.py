@@ -43,4 +43,4 @@ async def parse_page(page: FetchedPage) -> ParsedPage:
 @activity.defn
 async def save_page(to_save: SavePage):
     with open(to_save.path, "w") as f:
-        json.dump(to_save.page.__dict__, f)
+        json.dump(to_save.page.__dict__, f, indent=4)
