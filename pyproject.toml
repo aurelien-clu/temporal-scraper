@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "template"
+version = "0.1.0"
+
+description = "template"
+authors = ["aurelienc <aurelienc@somewhere.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+loguru = "^0"
+
+[tool.poetry.dev-dependencies]
+bandit = "*"       # security practices                    https://github.com/PyCQA/bandit
+black = ">=22.3.0" # automatic linter                      https://github.com/psf/black
+coverage = "*"     # unit and bdd tests code coverage
+isort = "*"        # sort imports                          https://github.com/timothycrosley/isort
+mypy = "*"         # static type checker                   https://github.com/python/mypy
+pylint = "*"       # code analysis                         https://www.pylint.org/
+pytest = "*"       # unit tests                            https://docs.pytest.org/en/latest/
+pytest-cov = "*"   # unit tests coverage
+ruff = "^0.0.257"  # fastr python linter                   https://github.com/charliermarsh/ruff
+safety = "*"       # check for package vulnerabilities     https://github.com/pyupio/safety
+
+[tool.ruff]
+line-length = 100
+exclude = ["src/tests/bdd/steps"]
+select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # flake8-comprehensions
+    "C4",
+    # isort
+    # "I001",
+    # flake8-simplify
+    "SIM",
+    # flake8-tidy-imports
+    "TID",
+    # flake8-quotes
+    "Q",
+    # pyupgrade
+    "UP",
+    # flake8-pytest-style
+    "PT",
+]
+extend-ignore = ["UP006", "UP007"]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
