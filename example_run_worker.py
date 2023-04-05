@@ -1,4 +1,5 @@
 import asyncio
+
 from temporalio.client import Client
 from temporalio.worker import Worker
 
@@ -6,13 +7,17 @@ from temporalio.worker import Worker
 from example_activities import say_hello
 from example_workflows import SayHello
 
+
 async def main():
     # Create client connected to server at the given address
     client = await Client.connect("localhost:7233")
 
     # Run the worker
-    worker = Worker(client, task_queue="my-task-queue", workflows=[SayHello], activities=[say_hello])
+    worker = Worker(
+        client, task_queue="my-task-queue", workflows=[SayHello], activities=[say_hello]
+    )
     await worker.run()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

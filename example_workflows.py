@@ -1,9 +1,11 @@
 from datetime import timedelta
+
 from temporalio import workflow
 
 # Import our activity, passing it through the sandbox
 with workflow.unsafe.imports_passed_through():
     from example_activities import say_hello
+
 
 @workflow.defn
 class SayHello:

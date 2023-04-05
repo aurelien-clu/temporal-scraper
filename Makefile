@@ -20,7 +20,6 @@ scraper_run_worker:
 scraper_run_workflow:
 	python scraper_run_workflow.py
 
-
 lint:
 	poetry run python -m black .
 	poetry run python -m isort --profile black .
