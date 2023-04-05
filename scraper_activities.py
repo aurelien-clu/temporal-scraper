@@ -15,6 +15,8 @@ async def fetch_page(url: str) -> str:
 
 @activity.defn
 async def parse_page(page: str) -> str:
+    # TODO: find all links
+    # TODO: define dataclass inputs & outputs of each activity
     logger.info(f"parsing page.length={len(page)}!")
     return "Empty"
 
