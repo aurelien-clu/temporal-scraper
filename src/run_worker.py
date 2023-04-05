@@ -4,8 +4,8 @@ import fire
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-from scraper_activities import *
-from scraper_workflows import *
+from activities import *
+from workflows import *
 
 
 async def async_start_worker(temporal_server: str, task_queue: str):

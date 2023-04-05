@@ -5,7 +5,7 @@ import bs4
 import httpx
 from temporalio import activity
 
-from scraper_model import FetchedPage, ParsedPage, SavePage
+from model import FetchedPage, ParsedPage, SavePage
 
 
 @activity.defn

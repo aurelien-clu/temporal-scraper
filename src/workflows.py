@@ -4,8 +4,8 @@ from temporalio import workflow
 
 # Import our activity, passing it through the sandbox
 with workflow.unsafe.imports_passed_through():
-    from scraper_activities import fetch_page, parse_page, save_page
-    from scraper_model import CrawlUrl, FetchedPage, OutputStats, ParsedPage, SavePage
+    from activities import fetch_page, parse_page, save_page
+    from model import CrawlUrl, FetchedPage, OutputStats, ParsedPage, SavePage
 
 
 @workflow.defn

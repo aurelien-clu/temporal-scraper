@@ -9,18 +9,18 @@ help:
 ##########
 
 scraper_run_worker:
-	python scraper_run_worker.py
+	cd src && python run_worker.py
 
 scraper_run_workflow:
-	python scraper_run_workflow.py --url=https://news.yahoo.com/ --output-dir=data
+	cd src && python run_workflow.py --url=https://news.yahoo.com/ --output-dir=../data
 
 fmt:
-	poetry run python -m black .
-	poetry run python -m isort --profile black .
+	poetry run python -m black src
+	poetry run python -m isort --profile black src
 
 test: test_static
 
 test_static:
-	poetry run python -m black --check .
-	python -m ruff .
-	poetry run python -m bandit -r .
+	poetry run python -m black --check src
+	python -m ruff src
+	poetry run python -m bandit -r src

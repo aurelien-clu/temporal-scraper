@@ -6,8 +6,8 @@ import fire
 from loguru import logger
 from temporalio.client import Client
 
-from scraper_model import CrawlUrl
-from scraper_workflows import CrawlWebsite
+from model import CrawlUrl
+from workflows import CrawlWebsite
 
 
 async def async_crawl(
