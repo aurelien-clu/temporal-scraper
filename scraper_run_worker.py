@@ -1,21 +1,19 @@
 import asyncio
 
+import fire
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-# Import the activity and workflow from our other files
 from scraper_activities import *
 from scraper_workflows import *
 
 
-async def main():
-    # Create client connected to server at the given address
-    client = await Client.connect("localhost:7233")
+async def async_start_worker(temporal_server: str, task_queue: str):
+    client = await Client.connect(temporal_server)
 
-    # Run the worker
     worker = Worker(
         client,
-        task_queue="scraper",
+        task_queue=task_queue,
         workflows=[CrawlWebsite],
         activities=[
             fetch_page,
@@ -26,5 +24,16 @@ async def main():
     await worker.run()
 
 
+def start_worker(
+    temporal_server: str = "localhost:7233",
+    task_queue="scraper",
+):
+    future = async_start_worker(
+        temporal_server=temporal_server,
+        task_queue=task_queue,
+    )
+    return asyncio.run(future)
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    fire.Fire(start_worker)
