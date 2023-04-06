@@ -43,10 +43,22 @@ python src/run_workflow.py --url=https://news.yahoo.com --output-dir=data
 
 ```bash
 # terminal 3 output
-INFO    | starting: CrawlUrl(id='5ad868[...]', url='https://news.yahoo.com')
-SUCCESS | Output(url='https://news.yahoo.com', title='Yahoo News [...]', nb_links=88, path='data/5ad868[...].json')
+INFO    | starting: CrawlUrl(id='b049[...]', url='https://news.yahoo.com')
+SUCCESS | Output(url='https://news.yahoo.com', title='Yahoo News [...]', nb_links=86, path='data/b049[...].json')
 ```
 
 Go to [127.0.0.1:8233/namespaces/default/workflows](http://127.0.0.1:8233/namespaces/default/workflows) to see the temporal web UI.
 
-![temporal-ui](docs/temporal-ui.png)
+You can see your recent workflow executions:
+
+![recent workflows](docs/0-workflows.png)
+
+When selected, you have a top summary:
+
+![workflow summary](docs/1-workflow.png)
+
+And finally you can see [all events](https://docs.temporal.io/references/events) related to the workflow execution:
+
+![workflow event history](docs/2-workflow-history.png)
+
+this includes `inputs`, `outputs`, `retries`, `exceptions`, etc.
